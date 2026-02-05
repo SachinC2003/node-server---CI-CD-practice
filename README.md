@@ -1,0 +1,1 @@
+After the docker file ready --> docker build -t api .
