@@ -1,24 +1,25 @@
-name: Deploy Nodejs Apllication
- 
- on:
-   push:
-     branches:
-       - main
- 
- jobs:
-   deploy:
-     runs-on: ubuntu-latest
-     steps:
-       - name: Checkout Repository
-         uses: actions/checkout@v3
-       
-       - name: Deploy via SSH
-          uses: appleboy/ssh-action@1.0.3
-          with:
-            host: ${{ secrets.SSH.HOST}}
-            username: root
-            key: ${{ secrets.SSH.KEY}}
-            script: |
-               cd /home/ubuntu/node-server---CI-CD-practice
-                git pull
-                docker compose up -d --build
+name: Deploy Nodejs Application
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ubuntu
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd /home/ubuntu/node-server---CI-CD-practice
+            git pull
+            docker compose up -d --build
