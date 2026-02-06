@@ -23,3 +23,4 @@ jobs:
             cd /home/ubuntu/node-server---CI-CD-practice
             git pull
             docker compose up -d --build
+ 
